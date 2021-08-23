@@ -2,6 +2,8 @@
 
 This module creates a reslient and fault tolerant GCP Infrastructure using Terraform.
 
+![PWC architecture diagram](img/arch.png)
+
 ## Usage
 ## Step 1: Clone the repo
 ## Step 2: Then perform the following commands on the root folder:
