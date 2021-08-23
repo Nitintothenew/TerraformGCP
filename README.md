@@ -1,31 +1,29 @@
-## Requirements
+## Terraform-PWC-GCP
 
-No requirements.
+This module creates a reslient and fault tolerant GCP Infrastructure using Terraform.
+
+## Usage
+## Step 1: Clone the repo
+## Step 2: Then perform the following commands on the root folder:
+
+- `terraform init` to get the plugins
+- `terraform plan --var-file="env/uat.tfvars"` to see the infrastructure plan
+- `terraform apply --var-file="env/uat.tfvars"` to apply the infrastructure build
+- `terraform destroy --var-file="env/uat.tfvars"` to destroy the built infrastructure
 
 ## Providers
-
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 3.79.0 |
-| <a name="provider_local"></a> [local](#provider\_local) | 2.1.0 |
-| <a name="provider_tls"></a> [tls](#provider\_tls) | 3.1.0 |
+| provider_google  | 3.79.0 |
 
 ## Modules
-
-| Name | Source | Version |
+| Name | Source | Purpose |
 |------|--------|---------|
-| <a name="module_bastion"></a> [bastion](#module\_bastion) | ./modules/bastion | n/a |
-| <a name="module_cloudsql"></a> [cloudsql](#module\_cloudsql) | ./modules/cloudsql | n/a |
-| <a name="module_efk"></a> [efk](#module\_efk) | ./modules/compute | n/a |
-| <a name="module_gke"></a> [gke](#module\_gke) | ./modules/gke | n/a |
-| <a name="module_hazelcast"></a> [hazelcast](#module\_hazelcast) | ./modules/compute | n/a |
-| <a name="module_infinispan"></a> [infinispan](#module\_infinispan) | ./modules/compute | n/a |
-| <a name="module_mongo_config"></a> [mongo\_config](#module\_mongo\_config) | ./modules/compute | n/a |
-| <a name="module_mongo_shard"></a> [mongo\_shard](#module\_mongo\_shard) | ./modules/compute | n/a |
-| <a name="module_mongo_single"></a> [mongo\_single](#module\_mongo\_single) | ./modules/compute | n/a |
-| <a name="module_monitoring"></a> [monitoring](#module\_monitoring) | ./modules/compute | n/a |
-| <a name="module_rabbitmq"></a> [rabbitmq](#module\_rabbitmq) | ./modules/compute | n/a |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | ./modules/vpc | n/a |
+| Bastion  | ./modules/bastion | For Creating Bastion host |
+| Cloudsql | ./modules/cloudsql | For Creating CloudSQL for PostgreSQL database |
+| VPC  | ./modules/vpc | For Creating Virtual Private Network  |
+| Compute| ./modules/compute | For Creating Compute Instance for Other services |
+| GKE  | ./modules/gke | For Creating Private Kubernetes Cluster for deployment of application  |
 
 ## Resources
 
@@ -49,60 +47,103 @@ No requirements.
 | [tls_private_key.ssh_key_monitoring](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 | [tls_private_key.ssh_key_rabbit](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key) | resource |
 
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_database_version"></a> [database\_version](#input\_database\_version) | n/a | `any` | n/a | yes |
-| <a name="input_db_instance_name"></a> [db\_instance\_name](#input\_db\_instance\_name) | n/a | `any` | n/a | yes |
-| <a name="input_efk_disk_size_gb"></a> [efk\_disk\_size\_gb](#input\_efk\_disk\_size\_gb) | n/a | `any` | n/a | yes |
-| <a name="input_efk_image"></a> [efk\_image](#input\_efk\_image) | n/a | `any` | n/a | yes |
-| <a name="input_efk_machine_type"></a> [efk\_machine\_type](#input\_efk\_machine\_type) | n/a | `any` | n/a | yes |
-| <a name="input_efk_module_name"></a> [efk\_module\_name](#input\_efk\_module\_name) | n/a | `list(string)` | <pre>[<br>  "efk"<br>]</pre> | no |
-| <a name="input_gcp_auth_file"></a> [gcp\_auth\_file](#input\_gcp\_auth\_file) | auth file location | `string` | n/a | yes |
-| <a name="input_gcp_region_1"></a> [gcp\_region\_1](#input\_gcp\_region\_1) | region where machine will create | `string` | n/a | yes |
-| <a name="input_gcp_service_list"></a> [gcp\_service\_list](#input\_gcp\_service\_list) | The list of apis necessary for the project | `list(string)` | <pre>[<br>  "cloudresourcemanager.googleapis.com",<br>  "serviceusage.googleapis.com",<br>  "compute.googleapis.com",<br>  "sqladmin.googleapis.com",<br>  "networkmanagement.googleapis.com",<br>  "container.googleapis.com",<br>  "logging.googleapis.com",<br>  "monitoring.googleapis.com",<br>  "storage.googleapis.com",<br>  "cloudapis.googleapis.com",<br>  "servicenetworking.googleapis.com",<br>  "iam.googleapis.com"<br>]</pre> | no |
-| <a name="input_hazelcast_disk_size_gb"></a> [hazelcast\_disk\_size\_gb](#input\_hazelcast\_disk\_size\_gb) | n/a | `any` | n/a | yes |
-| <a name="input_hazelcast_image"></a> [hazelcast\_image](#input\_hazelcast\_image) | n/a | `any` | n/a | yes |
-| <a name="input_hazelcast_machine_type"></a> [hazelcast\_machine\_type](#input\_hazelcast\_machine\_type) | n/a | `any` | n/a | yes |
-| <a name="input_hazelcast_module_name"></a> [hazelcast\_module\_name](#input\_hazelcast\_module\_name) | n/a | `list(string)` | <pre>[<br>  "hazelcast"<br>]</pre> | no |
-| <a name="input_infinispan_disk_size_gb"></a> [infinispan\_disk\_size\_gb](#input\_infinispan\_disk\_size\_gb) | n/a | `any` | n/a | yes |
-| <a name="input_infinispan_image"></a> [infinispan\_image](#input\_infinispan\_image) | n/a | `any` | n/a | yes |
-| <a name="input_infinispan_machine_type"></a> [infinispan\_machine\_type](#input\_infinispan\_machine\_type) | n/a | `any` | n/a | yes |
-| <a name="input_infinispan_module_name"></a> [infinispan\_module\_name](#input\_infinispan\_module\_name) | n/a | `list(string)` | <pre>[<br>  "infinispan"<br>]</pre> | no |
-| <a name="input_mongo_config_disk_size_gb"></a> [mongo\_config\_disk\_size\_gb](#input\_mongo\_config\_disk\_size\_gb) | } | `any` | n/a | yes |
-| <a name="input_mongo_config_image"></a> [mongo\_config\_image](#input\_mongo\_config\_image) | n/a | `any` | n/a | yes |
-| <a name="input_mongo_config_machine_type"></a> [mongo\_config\_machine\_type](#input\_mongo\_config\_machine\_type) | ############### for mongo-config ####### | `any` | n/a | yes |
-| <a name="input_mongo_config_module_name"></a> [mongo\_config\_module\_name](#input\_mongo\_config\_module\_name) | n/a | `list(string)` | <pre>[<br>  "mongo-config-1"<br>]</pre> | no |
-| <a name="input_mongo_shard_disk_size_gb"></a> [mongo\_shard\_disk\_size\_gb](#input\_mongo\_shard\_disk\_size\_gb) | } | `any` | n/a | yes |
-| <a name="input_mongo_shard_image"></a> [mongo\_shard\_image](#input\_mongo\_shard\_image) | n/a | `any` | n/a | yes |
-| <a name="input_mongo_shard_machine_type"></a> [mongo\_shard\_machine\_type](#input\_mongo\_shard\_machine\_type) | ######## for mongo ############ | `any` | n/a | yes |
-| <a name="input_mongo_shard_module_name"></a> [mongo\_shard\_module\_name](#input\_mongo\_shard\_module\_name) | n/a | `list(string)` | <pre>[<br>  "mongo-shard1-node1"<br>]</pre> | no |
-| <a name="input_mongo_single_disk_size_gb"></a> [mongo\_single\_disk\_size\_gb](#input\_mongo\_single\_disk\_size\_gb) | } | `any` | n/a | yes |
-| <a name="input_mongo_single_image"></a> [mongo\_single\_image](#input\_mongo\_single\_image) | n/a | `any` | n/a | yes |
-| <a name="input_mongo_single_machine_type"></a> [mongo\_single\_machine\_type](#input\_mongo\_single\_machine\_type) | ############### for mongos ####### | `any` | n/a | yes |
-| <a name="input_mongo_single_module_name"></a> [mongo\_single\_module\_name](#input\_mongo\_single\_module\_name) | n/a | `list(string)` | <pre>[<br>  "node1",<br>  "node2",<br>  "node3"<br>]</pre> | no |
-| <a name="input_mongodb_cluster"></a> [mongodb\_cluster](#input\_mongodb\_cluster) | n/a | `bool` | n/a | yes |
-| <a name="input_monitoring_disk_size_gb"></a> [monitoring\_disk\_size\_gb](#input\_monitoring\_disk\_size\_gb) | n/a | `any` | n/a | yes |
-| <a name="input_monitoring_image"></a> [monitoring\_image](#input\_monitoring\_image) | n/a | `any` | n/a | yes |
-| <a name="input_monitoring_machine_type"></a> [monitoring\_machine\_type](#input\_monitoring\_machine\_type) | n/a | `any` | n/a | yes |
-| <a name="input_monitoring_module_name"></a> [monitoring\_module\_name](#input\_monitoring\_module\_name) | n/a | `list(string)` | <pre>[<br>  "monitoring"<br>]</pre> | no |
-| <a name="input_no_of_efk_node"></a> [no\_of\_efk\_node](#input\_no\_of\_efk\_node) | n/a | `any` | n/a | yes |
-| <a name="input_no_of_hazelcast_node"></a> [no\_of\_hazelcast\_node](#input\_no\_of\_hazelcast\_node) | n/a | `any` | n/a | yes |
-| <a name="input_no_of_infinispan_node"></a> [no\_of\_infinispan\_node](#input\_no\_of\_infinispan\_node) | n/a | `any` | n/a | yes |
-| <a name="input_no_of_monitoring_node"></a> [no\_of\_monitoring\_node](#input\_no\_of\_monitoring\_node) | n/a | `any` | n/a | yes |
-| <a name="input_no_of_rabbitmq_node"></a> [no\_of\_rabbitmq\_node](#input\_no\_of\_rabbitmq\_node) | n/a | `any` | n/a | yes |
-| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | name of project | `string` | n/a | yes |
-| <a name="input_project_tag"></a> [project\_tag](#input\_project\_tag) | n/a | `any` | n/a | yes |
-| <a name="input_rabbitmq_disk_size_gb"></a> [rabbitmq\_disk\_size\_gb](#input\_rabbitmq\_disk\_size\_gb) | n/a | `any` | n/a | yes |
-| <a name="input_rabbitmq_image"></a> [rabbitmq\_image](#input\_rabbitmq\_image) | n/a | `any` | n/a | yes |
-| <a name="input_rabbitmq_machine_type"></a> [rabbitmq\_machine\_type](#input\_rabbitmq\_machine\_type) | n/a | `any` | n/a | yes |
-| <a name="input_rabbitmq_module_name"></a> [rabbitmq\_module\_name](#input\_rabbitmq\_module\_name) | n/a | `list(string)` | <pre>[<br>  "rabbitmq"<br>]</pre> | no |
-| <a name="input_zones"></a> [zones](#input\_zones) | n/a | `list` | `[]` | no |
+| database_version | Version of your postgresql database | `string` | n/a | yes |
+| db_instance_name | Database instance name | `string` | n/a | yes |
+| efk_disk_size_gb | Logging server disk size | `string` | n/a | yes |
+| efk_machine_type | Logging server Machine type | `string` | n/a | yes |
+| efk_module_name | n/a | `list(string)` | [ "efk"] | no |
+| gcp_auth_file | auth file location | `string` | n/a | yes |
+| gcp_region_1 | region where machine will create | `string` | n/a | yes |
+| gcp_service_list | The list of apis necessary for this project | `list(string)` |   ["cloudresourcemanager.googleapis.com",  "serviceusage.googleapis.com",  "compute.googleapis.com",  "sqladmin.googleapis.com",  "networkmanagement.googleapis.com",  "container.googleapis.com",  "logging.googleapis.com",  "monitoring.googleapis.com",  "storage.googleapis.com",  "cloudapis.googleapis.com",  "servicenetworking.googleapis.com",  "iam.googleapis.com"] | no |
+| hazelcast_disk_size_gb | n/a | `any` | n/a | yes |
+| hazelcast_image  | n/a | `any` | n/a | yes |
+| hazelcast_machine_type | n/a | `any` | n/a | yes |
+| hazelcast_module_name | `list(string)` | [  "hazelcast"] | no |
+| infinispan_disk_size_gb | n/a | `any` | n/a | yes |
+| infinispan_image | n/a | `any` | n/a | yes |
+| infinispan_machine_type  | `string` | n/a | yes |
+| infinispan_module_name  | `list(string)` | [  "infinispan"] | no |
+| mongo_config_disk_size_gb  | `string` | n/a | yes |
+| mongo_config_image  | n/a | `string` | n/a | yes |
+| mongo_config_machine_type  | n/a | `any` | n/a | yes |
+| mongo_config_module_name  | n/a | `list(string)` | [  "mongo-config-1"] | no |
+| mongo_shard_disk_size_gb  | `any` | n/a | yes |
+| mongo_shard_image  | n/a | `any` | n/a | yes |
+| mongo_shard_machine_type  | n/a | `any` | n/a | yes |
+| mongo_shard_module_name | n/a | `list(string)` | [  "mongo-shard1-node1"] | no |
+| mongo_single_disk_size_gb  | `any` | n/a | yes |
+| mongo_single_image  | n/a | `any` | n/a | yes |
+| mongo_single_machine_type | n/a | `any` | n/a | yes |
+| mongo_single_module_name  | n/a | `list(string)` | [  "node1",  "node2",  "node3"] | no |
+| mongodb_cluster | n/a | `bool` | n/a | yes |
+| monitoring_disk_size_gb | n/a | `any` | n/a | yes |
+| monitoring_image | n/a | `any` | n/a | yes |
+| monitoring_machine_type  | n/a | `any` | n/a | yes |
+| monitoring_module_name  | n/a | `list(string)` | [  "monitoring"] | no |
+| no_of_efk_node | n/a | `any` | n/a | yes |
+| no_of_hazelcast_node  | n/a | `any` | n/a | yes |
+| no_of_infinispan_node  | n/a | `any` | n/a | yes |
+| no_of_monitoring_node  | n/a | `any` | n/a | yes |
+| no_of_rabbitmq_node  | n/a | `any` | n/a | yes |
+| project_name  | name of project | `string` | n/a | yes |
+| project_tag  | n/a | `any` | n/a | yes |
+| rabbitmq_disk_size_gb  | n/a | `any` | n/a | yes |
+| rabbitmq_image  | n/a | `any` | n/a | yes |
+| rabbitmq_machine_type  | n/a | `any` | n/a | yes |
+| rabbitmq_module_name | n/a | `list(string)` | [  "rabbitmq"] | no |
+| zones | n/a | `list` | `[]` | no |
+
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_bastion_IP"></a> [bastion\_IP](#output\_bastion\_IP) | Public IP of bastion host |
-| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | vpc  id |
+| vpc_id| VPC ID |
+| bastion_IP | Public IP of bastion host |
+
+## Requirements
+
+Before this module can be used on a project, you must ensure that the following pre-requisites are fulfilled:
+
+1. Terraform is [installed](#software-dependencies) on the machine where Terraform is executed.
+2. The Service Account you execute the module with has the right [permissions](#configure-a-service-account).
+
+The [project factory](https://github.com/terraform-google-modules/terraform-google-project-factory) can be used to provision projects with the correct APIs active.
+
+### Software Dependencies
+### Terraform
+- [Terraform](https://www.terraform.io/downloads.html) 1.0.x
+- [terraform-provider-google](https://github.com/terraform-providers/terraform-provider-google) plugin v3.79.0
+
+### Configure a Service Account
+In order to execute this module you must have a Service Account with the
+following project roles:
+- roles/owner
+
+## Install
+
+### Terraform
+Be sure you have the correct Terraform version (1.0.x), you can choose the binary here:
+- https://releases.hashicorp.com/terraform/
+
+## File structure
+The project has the following folders and files:
+
+- /: Root folder
+- env:  For storing <env>.tfvars file
+- /main.tf: Main file for this module, contains all the resources to create
+- /variables.tf: All the variables for the module
+- /output.tf: The outputs of the module
+- /README.md: This file
+- /modules: Modules that are called from main.tf
+- /rabbitmq.tf: For Rabbitmq
+- /hazel.tf: For Hazelcast 
+- /infinispan.tf: For Infinispan
+- /mongo-shard.tf: For MongoDB
+- /monitoring.tf: For Monitoring
+- /efk.tf: For Logging       
