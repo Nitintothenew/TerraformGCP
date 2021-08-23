@@ -43,3 +43,8 @@ output "cluster_secondary_range" {
 output "cluster_service_range" {
   value = google_compute_subnetwork.PrivateGKE.ip_cidr_range
 }
+
+
+output "nat_ip" {
+   value =  google_compute_address.static.address
+}

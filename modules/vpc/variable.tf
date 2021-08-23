@@ -1,3 +1,8 @@
+variable "null_var" {               ###for creating dependency of all the mandatory api's to run terraform code
+   default = "null"
+}
+
+
 variable "name" {
      description = "name of vpc"
      type = string
@@ -5,14 +10,15 @@ variable "name" {
   
 }
 
+variable  "nat_name" {
+  default = "pwcnat"
+}
 
-
-
-
-variable "project-name" {
+variable "project_name" {
   type        = string
   description = "name of project"
-  default     = "nypoc-318209"
+  #default     = "nypoc-318209"
+  #default    = "terraform-322005"
 }
 
 
@@ -98,3 +104,5 @@ variable "cluster_secondary_range"{
 variable "cluster_service_range"{
   default = "10.0.32.0/20"
 }
+
+

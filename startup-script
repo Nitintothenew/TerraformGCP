@@ -1,0 +1,19 @@
+#!/bin/bash -xe
+sudo yum update -y
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+sudo yum install kubectl -y
+    # export cluster_name=$(gcloud container clusters list | grep -v NAME | awk '{print $1}')
+    # export cluster_region=$(gcloud container clusters list | grep -v NAME | awk '{print $2}')
+    # gcloud container clusters get-credentials $cluster_name --region $cluster_region 
+
+    # export localIP=$(gcloud compute instances describe nypoc-318209-default-bastion --zone us-central1-a --format='get(networkInterfaces[0].networkIP)')
+    # gcloud container clusters update $cluster_name --region $cluster_region --enable-master-authorized-networks --master-authorized-networks $localIP/32
+

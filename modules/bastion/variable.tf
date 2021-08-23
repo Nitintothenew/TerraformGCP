@@ -4,21 +4,15 @@ variable "name" {
   default     = "bastion"
 }
 
-variable "service_account_email" {
-  default = "nitinfulltf@nypoc-318209.iam.gserviceaccount.com"
-}
+# variable "service_account_email" {
+#   default = "nitinfulltf@nypoc-318209.iam.gserviceaccount.com"
+# }
 
 variable "project_name" {
   type    = string
   description = "project name"
-  default   =   "nypoc-318209"
+ 
 }
-
-# variable "shielded_vm" {
-#   type = bool
-#   description = "Enable shielded VM on the bastion host (recommended)"
-#   default     = true
-# }
 
 variable "disk_size_gb" {
   description = "Boot disk size in GB"
@@ -32,6 +26,9 @@ variable "machine_type" {
   default     = "e2-medium"
 }
 
+variable "project_tag" {
+  
+}
 variable "zone" {
   type        = string
   description = "zone where machine will create"
@@ -41,15 +38,27 @@ variable "zone" {
 variable "image" {
   type = string
   description = "image name"
-  default = "debian-cloud/debian-9"
+  default = "centos-8"
   
 }
 
+variable "static_ip" {
+  
+}
 
 
 variable "subnetname" {
   type = string
   description = "subnet name"
   
+  
+}
+
+variable "ssh_user" {
+  default = "ubuntu"
+}
+
+
+variable "key" {
   
 }

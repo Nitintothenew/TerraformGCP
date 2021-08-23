@@ -1,6 +1,23 @@
-zones = ["us-central1-a" , "us-central1-b" ] 
+zones = ["us-central1-a" , "us-central1-b", "us-central1-c" ] 
 
-project_tag = "PWC-ASP2"
+project_tag = "pwc-asp2"
+
+#gcp_auth_file = "/home/ttn/Downloads/nypoc-318209-7f6629302cbd.json"
+  
+gcp_auth_file = "/home/ttn/Downloads/terraform-322005-c3933c9994fd.json"
+
+gcp_region_1 = "us-central"
+
+
+#project_name = "nypoc-318209"
+project_name = "terraform-322005"
+
+db_instance_name = "nitin"
+database_version = "POSTGRES_10"
+
+
+
+
 
 
 no_of_hazelcast_node = 1
@@ -28,7 +45,33 @@ monitoring_machine_type = "e2-medium"
 monitoring_image = "debian-cloud/debian-9"   
 monitoring_disk_size_gb = 12
 
-no_of_mongo_node = 1
-mongo_machine_type = "e2-medium"
-mongo_image = "debian-cloud/debian-9"   
-mongo_disk_size_gb = 12
+#no_of_mongo_shard_node  depends on the length of mongo_shard_module_name
+mongo_shard_machine_type = "e2-medium"
+mongo_shard_image = "debian-cloud/debian-9"   
+mongo_shard_disk_size_gb = 12
+
+
+#no_of_mongo_single_node depends on the length of mongo_single_module_name
+mongo_single_machine_type = "e2-medium"
+mongo_single_image = "debian-cloud/debian-9"   
+mongo_single_disk_size_gb = 12
+
+
+#no_of_mongo_config_node  depends on the length of  mongo_config_module_name
+mongo_config_machine_type = "e2-medium"
+mongo_config_image = "debian-cloud/debian-9"   
+mongo_config_disk_size_gb = 12
+
+
+
+
+###If "true" then sharded  cluster will create else single client cluster will create
+mongodb_cluster =  true  
+  
+
+
+#### sharded cluster mongo replica set = 5
+
+#1 config server RS
+#5-6 MongoS
+#mongo-shard1-node1
