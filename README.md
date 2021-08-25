@@ -114,8 +114,10 @@ Before this module can be used on a project, you must ensure that the following 
 
 1. Terraform is [installed](#software-dependencies) on the machine where Terraform is executed.
 2. The Service Account you execute the module with has the right [permissions](#configure-a-service-account).
+3. Make sure you had create a project in google cloud.
+4. Create a bucket for Remote backend in Terraform and put the name of that bucket in provider.tf file.
 
-The [project factory](https://github.com/terraform-google-modules/terraform-google-project-factory) can be used to provision projects with the correct APIs active.
+
 
 ### Software Dependencies
 ### Terraform
@@ -148,4 +150,5 @@ The project has the following folders and files:
 - /infinispan.tf: For Infinispan
 - /mongo-shard.tf: For MongoDB
 - /monitoring.tf: For Monitoring
-- /efk.tf: For Logging       
+- /efk.tf: For Logging
+- /provider.tf: Information regarding provider which is GCP in our case       
