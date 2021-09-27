@@ -1,15 +1,13 @@
 variable "project_name" {
   type        = string
   description = "name of project"
-  # default     = "nypoc-318209"
-  # #default     = "terraform-322005"
+
 }
 
 variable "gcp_auth_file" {
   type        = string
   description = "auth file location"
-  #default     = "/home/ttn/Downloads/nypoc-318209-7f6629302cbd.json"
-  #default     = "/home/ttn/Downloads/terraform-322005-6aea4a0d8849.json"
+
 }
 
 variable "gcp_region_1" {
