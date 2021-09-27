@@ -1,8 +1,8 @@
-## Terraform-PWC-GCP
+## Terraform-GCP
 
 This module creates a reslient and fault tolerant GCP Infrastructure using Terraform.
 
-![PWC architecture diagram](img/arch.png)
+![Architecture diagram](img/arch.png)
 
 ## Usage
 ## Step 1: Clone the repo
