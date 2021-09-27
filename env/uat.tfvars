@@ -1,15 +1,15 @@
 zones = ["us-central1-a" , "us-central1-b", "us-central1-c" ] 
 
-project_tag = "pwc-asp2"
+project_tag = "poc"
 
-#gcp_auth_file = "/home/ttn/Downloads/nypoc-318209-7f6629302cbd.json"
-  
-gcp_auth_file = "/home/ttn/Downloads/terraform-322005-c3933c9994fd.json"
+
+#path of  cred file
+gcp_auth_file = "~/terraform-322005-c3933c9994fd.json"
 
 gcp_region_1 = "us-central"
 
 
-#project_name = "nypoc-318209"
+
 project_name = "terraform-322005"
 
 db_instance_name = "nitin"
@@ -70,8 +70,3 @@ mongodb_cluster =  true
   
 
 
-#### sharded cluster mongo replica set = 5
-
-#1 config server RS
-#5-6 MongoS
-#mongo-shard1-node1
