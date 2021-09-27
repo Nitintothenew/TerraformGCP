@@ -4,9 +4,7 @@ variable "name" {
   default     = "bastion"
 }
 
-# variable "service_account_email" {
-#   default = "nitinfulltf@nypoc-318209.iam.gserviceaccount.com"
-# }
+
 
 variable "project_name" {
   type    = string
